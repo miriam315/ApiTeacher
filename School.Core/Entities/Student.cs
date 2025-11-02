@@ -1,4 +1,4 @@
-﻿namespace School.Entities
+﻿namespace School.Core.Entities
 {
     public class Student
     {

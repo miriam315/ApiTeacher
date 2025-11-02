@@ -1,4 +1,5 @@
-﻿using School.Entities;
+﻿using School.Core;
+using School.Core.Entities;
 
 namespace School
 {

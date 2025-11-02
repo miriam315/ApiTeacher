@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using School.Entities;
+using School.Core.Entities;
+using School.Core.Service;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,27 +10,27 @@ namespace School.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
-        public IDataContext _context { get; set; }
+        private readonly ITeacherService _teacherService;
 
-        public TeachersController(IDataContext context)
+        public TeachersController(ITeacherService teacherService)
         {
-            _context = context;
+            _teacherService = teacherService;
         }
 
         // GET: api/<TeachersController>
         [HttpGet]
         public IEnumerable<Teachers> Get()
         {
-            return _context.teachers;
+            return _teacherService.GetAll();
         }
 
         // GET api/<TeachersController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var teacher = _context.teachers.Find(t => t.Id == id);
-            if (teacher != null)
-                return Ok(teacher);
+            var t = _teacherService.GetById(id);
+            if (t != null)
+                return Ok(t);
             return NotFound();
         }
 
@@ -37,12 +38,12 @@ namespace School.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Teachers value)
         {
-            var t = _context.teachers.Find(x => x.Id == value.Id);
-            if (t != null)
-            {
-                return Conflict();//209
-            }
-            _context.teachers.Add(value);
+            //var t = _context.teachers.Find(x => x.Id == value.Id);
+            //if (t != null)
+            //{
+            //    return Conflict();//209
+            //}
+            //_context.teachers.Add(value);
             return Ok();//200
         }
 

@@ -1,6 +1,7 @@
-﻿using School.Entities;
+﻿
+using School.Core.Entities;
 
-namespace School
+namespace School.Core
 {
     public interface IDataContext
     {

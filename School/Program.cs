@@ -1,4 +1,8 @@
 using School;
+using School.Core.Repositories;
+using School.Core.Service;
+using School.Data.Repositories;
+using School.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +14,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddScoped<IDataContext, DataContext>();//יוצר  מופע לכל בקשה
-builder.Services.AddSingleton<IDataContext, DataContext>();//יוצר מופע אחד לכל האפליקציה
+//builder.Services.AddSingleton<IDataContext, DataContext>();//יוצר מופע אחד לכל האפליקציה
 //builder.Services.AddTransient<IDataContext, DataContext>();//יוצר מופע חדש בכל פעם שיהיה רשום את הדרישה למופע
+
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
+//builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+//builder.Services.AddSingleton<IStudentService, StudentService>();
+
+builder.Services.AddSingleton<DataContext>();
+
 
 var app = builder.Build();
 
