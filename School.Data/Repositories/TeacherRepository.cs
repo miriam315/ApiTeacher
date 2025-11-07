@@ -17,12 +17,12 @@ namespace School.Data.Repositories
         }
         public List<Teachers> GetAllTeachers()
         {
-            return _context.teachers;
+            return _context.teachers.ToList();
         }
 
         public Teachers GetById(int id)
         {
-            var t = _context.teachers.Find(x => x.Id == id);
+            var t = _context.teachers.ToList().Find(x => x.Id == id);
             return t;
         }
 

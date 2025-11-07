@@ -23,7 +23,7 @@ builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 //builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 //builder.Services.AddSingleton<IStudentService, StudentService>();
 
-builder.Services.AddSingleton<DataContext>();
+builder.Services.AddDbContext<DataContext>();
 
 
 var app = builder.Build();
